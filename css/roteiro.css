@@ -1,0 +1,141 @@
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --verde-escuro:#0f5132;--verde:#1a7f4b;--verde-claro:#2ea86a;
+  --amarelo:#f7c948;--amarelo-esc:#d4a900;
+  --texto:#1a1f2e;--texto-suave:#4a5266;
+  --fundo:#ffffff;--fundo-alt:#f4f7f5;--borda:#e4e9e6;
+  --sombra:0 12px 40px rgba(10,61,41,.12);
+  --radius:16px;--radius-lg:24px;
+  --t:.35s cubic-bezier(.4,0,.2,1);
+}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  color:var(--texto);background:var(--fundo);
+  line-height:1.6;padding:2rem 1.5rem;
+  max-width:1000px;margin:0 auto;
+}
+
+/* ---------- HEADER ---------- */
+header.topo{
+  text-align:center;margin-bottom:3rem;
+  padding-bottom:2rem;border-bottom:3px solid var(--amarelo);
+}
+header.topo h1{
+  font-size:clamp(1.5rem,4vw,2.25rem);
+  color:var(--verde-escuro);font-weight:800;
+  letter-spacing:-.02em;margin-bottom:.5rem;
+}
+header.topo h1 span{color:var(--amarelo-esc)}
+header.topo p{color:var(--texto-suave);font-size:1rem;max-width:600px;margin:0 auto}
+
+/* ---------- SELETOR DE MODO ---------- */
+.seletor-modo{
+  position:sticky;top:0;z-index:100;
+  display:flex;justify-content:center;gap:.5rem;
+  padding:1rem;margin-bottom:2rem;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--borda);
+}
+.seletor-modo button{
+  padding:.6rem 1.25rem;
+  border:2px solid var(--borda);
+  background:#fff;border-radius:999px;
+  font-weight:600;font-size:.9rem;
+  color:var(--texto-suave);
+  cursor:pointer;transition:var(--t);
+  font-family:inherit;
+}
+.seletor-modo button:hover{border-color:var(--verde);color:var(--verde-escuro)}
+.seletor-modo button.ativo{background:var(--verde);color:#fff;border-color:var(--verde)}
+
+/* ---------- SLIDE DO ROTEIRO ---------- */
+.roteiro-slide{
+  background:#fff;
+  border:1px solid var(--borda);
+  border-left:6px solid var(--amarelo);
+  border-radius:var(--radius);
+  padding:1.75rem 2rem;
+  margin-bottom:1.25rem;
+  transition:var(--t);
+}
+.roteiro-slide:hover{box-shadow:var(--sombra)}
+.roteiro-numero{
+  display:inline-block;
+  background:var(--verde-escuro);color:var(--amarelo);
+  font-size:.7rem;font-weight:800;
+  padding:.3rem .75rem;border-radius:999px;
+  text-transform:uppercase;letter-spacing:.1em;
+  margin-bottom:.75rem;
+}
+.roteiro-slide h3{
+  color:var(--verde-escuro);
+  font-size:1.15rem;font-weight:700;
+  margin-bottom:1rem;
+}
+.roteiro-texto{
+  background:var(--fundo-alt);
+  border-left:4px solid var(--verde);
+  border-radius:10px;
+  padding:1.25rem 1.5rem;
+  font-size:1rem;
+  color:var(--texto);
+  line-height:1.75;
+  font-style:italic;
+}
+.roteiro-texto::before{content:'\201C';color:var(--verde);font-size:2rem;line-height:0;vertical-align:-.4em;margin-right:.25rem;font-family:Georgia,serif}
+.roteiro-texto::after{content:'\201D';color:var(--verde);font-size:2rem;line-height:0;vertical-align:-.4rem;margin-left:.25rem;font-family:Georgia,serif}
+
+/* ---------- DICAS ---------- */
+.dicas{
+  background:linear-gradient(135deg,var(--verde-escuro),var(--verde));
+  color:#fff;
+  border-radius:var(--radius-lg);
+  padding:2rem;
+  margin-top:3rem;
+}
+.dicas h2{
+  color:var(--amarelo);
+  font-size:1.25rem;font-weight:800;
+  margin-bottom:1rem;
+}
+.dicas ul{margin-left:1.5rem}
+.dicas li{margin-bottom:.6rem;font-size:.95rem;color:#d1e5d8}
+.dicas li strong{color:#fff}
+
+/* ---------- CONTROLES DE NAVEGACAO ---------- */
+.acoes-topo{
+  display:flex;justify-content:flex-end;gap:.75rem;
+  margin-bottom:1.5rem;
+}
+.acoes-topo button, .acoes-topo a{
+  padding:.5rem 1rem;
+  border:1px solid var(--borda);
+  background:#fff;
+  border-radius:10px;
+  font-size:.85rem;font-weight:600;
+  color:var(--texto-suave);
+  cursor:pointer;text-decoration:none;
+  transition:var(--t);
+  font-family:inherit;
+}
+.acoes-topo button:hover, .acoes-topo a:hover{
+  border-color:var(--verde);
+  color:var(--verde-escuro);
+}
+
+/* ---------- MOSTRAR/ESCONDER MODOS ---------- */
+body.modo-crianca .modo-tecnico{display:none}
+body.modo-tecnico .modo-crianca{display:none}
+
+@media(max-width:600px){
+  body{padding:1rem}
+  .roteiro-slide{padding:1.25rem}
+  .roteiro-texto{padding:1rem;font-size:.95rem}
+  .seletor-modo{flex-wrap:wrap}
+}
+@media print{
+  body{padding:0;max-width:none}
+  .seletor-modo,.acoes-topo{display:none}
+  .roteiro-slide{page-break-inside:avoid;border-left-width:4px}
+}
